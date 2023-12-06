@@ -11,7 +11,7 @@ public class Main {
 
     private static final int YEAR = 2023;
 
-    private static final int DAY = 3;
+    private static final int DAY = 6;
     private static final Map<Integer, IDay> DAYS2020;
     private static final Map<Integer, IDay> DAYS2021;
 
@@ -40,6 +40,7 @@ public class Main {
         DAYS2023.put(3, new main.Y2023.Day03());
         DAYS2023.put(4, new main.Y2023.Day04());
         DAYS2023.put(5, new main.Y2023.Day05());
+        DAYS2023.put(6, new main.Y2023.Day06());
     }
 
 
