@@ -10,9 +10,9 @@ import java.util.regex.Pattern;
 public class Day01 implements IDay {
 
     @Override
-    public String solvePart1(String input) {
+    public String solvePart1(List<String> input) {
 
-        var score = input.lines().mapToInt(line -> {
+        var score = input.stream().mapToInt(line -> {
             String first = "0";
             String last = "0";
 
@@ -34,10 +34,10 @@ public class Day01 implements IDay {
     }
 
     @Override
-    public String solvePart2(String input) {
+    public String solvePart2(List<String> input) {
         List<String> numbers = Arrays.asList("zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
 
-        var score = input.lines().mapToInt(line -> {
+        var score = input.stream().mapToInt(line -> {
             String first = null;
             String last = null;
 

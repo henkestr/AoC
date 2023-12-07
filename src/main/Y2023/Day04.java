@@ -9,9 +9,9 @@ import java.util.Objects;
 public class Day04 implements IDay {
 
     @Override
-    public String solvePart1(String input) {
+    public String solvePart1(List<String> input) {
         var points = 0;
-        for (String line : input.lines().toList()) {
+        for (String line : input) {
 
             String[] temp = line.split(":\s+")[1].split("\s+\\|\s+");
             List<Integer> winningNumbers = Arrays.stream(temp[0].split("\s+")).map(Integer::parseInt).toList();
@@ -27,15 +27,12 @@ public class Day04 implements IDay {
     }
 
     @Override
-    public String solvePart2(String input) {
-        var lines = input.lines().toList();
-        var size = lines.size();
-
-        final int[] instances = new int[size];
+    public String solvePart2(List<String> input) {
+        final int[] instances = new int[input.size()];
         Arrays.fill(instances, 1);
 
-        for (int i = 0; i < lines.size(); i++) {
-            String line = lines.get(i);
+        for (int i = 0; i < input.size(); i++) {
+            String line = input.get(i);
             String[] temp = line.split(":[\s]+")[1].split("[\s]+\\|[\s]+");
             List<Integer> winningNumbers = Arrays.stream(temp[0].split("\s+")).map(Integer::parseInt).toList();
             List<Integer> myNumbers = Arrays.stream(temp[1].split("\s+")).map(Integer::parseInt).toList();

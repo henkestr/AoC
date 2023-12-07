@@ -11,11 +11,10 @@ import java.util.List;
 public class Day01 implements IDay {
 
     @Override
-    public String solvePart1(String input) {
-        List<String> lines = input.lines().toList();
-        int[] result = new int[lines.size()];
+    public String solvePart1(List<String> input) {
+        int[] result = new int[input.size()];
         int index = 0;
-        for (String line : lines) {
+        for (String line : input) {
             if (line.isEmpty()) {
                 index++;
                 continue;
@@ -30,11 +29,10 @@ public class Day01 implements IDay {
     }
 
     @Override
-    public String solvePart2(String input) {
+    public String solvePart2(List<String> input) {
         List<Integer> caloriesOfElfs = new ArrayList<>();
-        List<String> lines = input.lines().toList();
         int sum = 0;
-        for (String line : lines) {
+        for (String line : input) {
             if (line.isEmpty()) {
                 caloriesOfElfs.add(sum);
                 sum = 0;
@@ -44,6 +42,6 @@ public class Day01 implements IDay {
         }
         caloriesOfElfs.add(sum);
         Collections.sort(caloriesOfElfs);
-        return String.valueOf(caloriesOfElfs.get(caloriesOfElfs.size() - 1) + caloriesOfElfs.get(caloriesOfElfs.size() - 2) + caloriesOfElfs.get(caloriesOfElfs.size() - 3));
+        return String.valueOf(caloriesOfElfs.getLast() + caloriesOfElfs.get(caloriesOfElfs.size() - 2) + caloriesOfElfs.get(caloriesOfElfs.size() - 3));
     }
 }

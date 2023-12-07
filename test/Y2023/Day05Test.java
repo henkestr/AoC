@@ -47,11 +47,11 @@ public class Day05Test {
 
     @Test
     public void part1() {
-        assertEquals("35", DAY.solvePart1(PART_1_AND_2_INPUT));
+        assertEquals("35", DAY.solvePart1(PART_1_AND_2_INPUT.lines().toList()));
     }
 
     @Test
     public void part2() {
-        assertEquals("46", DAY.solvePart2(PART_1_AND_2_INPUT));
+        assertEquals("46", DAY.solvePart2(PART_1_AND_2_INPUT.lines().toList()));
     }
 }

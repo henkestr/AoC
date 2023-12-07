@@ -11,14 +11,14 @@ import java.util.stream.LongStream;
 public class Day06 implements IDay {
 
     @Override
-    public String solvePart1(String input) {
-        var lines = input.lines().toList();
+    public String solvePart1(List<String> input) {
 
-        List<Integer> timeValues = Arrays.stream(lines.get(0).split("\\s+"))
+
+        List<Integer> timeValues = Arrays.stream(input.get(0).split("\\s+"))
                 .filter(s -> s.matches("\\d+"))
                 .map(Integer::parseInt).toList();
 
-        List<Integer> distanceValues = Arrays.stream(lines.get(1).split("\\s+"))
+        List<Integer> distanceValues = Arrays.stream(input.get(1).split("\\s+"))
                 .filter(s -> s.matches("\\d+"))
                 .map(Integer::parseInt).toList();
 
@@ -40,13 +40,12 @@ public class Day06 implements IDay {
     }
 
     @Override
-    public String solvePart2(String input) {
-        var lines = input.lines().toList();
+    public String solvePart2(List<String> input) {
 
-        String timeValues = Arrays.stream(lines.get(0).split("\\s+"))
+        String timeValues = Arrays.stream(input.get(0).split("\\s+"))
                 .filter(s -> s.matches("\\d+")).collect(Collectors.joining());
 
-        String distanceValues = Arrays.stream(lines.get(1).split("\\s+"))
+        String distanceValues = Arrays.stream(input.get(1).split("\\s+"))
                 .filter(s -> s.matches("\\d+")).collect(Collectors.joining());
 
         var timeVal = Long.parseLong(timeValues);

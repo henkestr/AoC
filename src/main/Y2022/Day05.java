@@ -11,14 +11,11 @@ public class Day05 implements IDay {
     private static final int NUMBER_OF_STACKS = 9;
 
     @Override
-    public String solvePart1(String input) {
+    public String solvePart1(List<String> input) {
         Map<Integer, Stack<String>> stacks = new HashMap<>();
         boolean first = true;
-
-        var lines = input.lines().toList();
-
         // Stacks
-        for (String line : lines) {
+        for (String line : input) {
             if ((line.matches(".*\\d.*"))) {
                 break;
             }
@@ -42,7 +39,7 @@ public class Day05 implements IDay {
 
         // Move instructions
         Pattern pattern = Pattern.compile("move (\\d+) from (\\d+) to (\\d+)");
-        Matcher matcher = pattern.matcher(input);
+        Matcher matcher = pattern.matcher(String.join("", input));
 
         while (matcher.find()) {
             int amountValue = Integer.parseInt(matcher.group(1));
@@ -62,13 +59,11 @@ public class Day05 implements IDay {
     }
 
     @Override
-    public String solvePart2(String input) {
+    public String solvePart2(List<String> input) {
         Map<Integer, Stack<String>> stacks = new HashMap<>();
 
-        var lines = input.lines().toList();
-
         // Stacks
-        for (String line : lines) {
+        for (String line : input) {
             if ((line.matches(".*\\d.*"))) {
                 break;
             }
@@ -89,7 +84,7 @@ public class Day05 implements IDay {
 
         // Move instructions
         Pattern pattern = Pattern.compile("move (\\d+) from (\\d+) to (\\d+)");
-        Matcher matcher = pattern.matcher(input);
+        Matcher matcher = pattern.matcher(String.join("", input));
 
         while (matcher.find()) {
             int amountValue = Integer.parseInt(matcher.group(1));

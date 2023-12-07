@@ -2,11 +2,13 @@ package main.Y2022;
 
 import main.IDay;
 
+import java.util.List;
+
 public class Day02 implements IDay {
 
     @Override
-    public String solvePart1(String input) {
-        var score = input.lines().mapToInt(line -> {
+    public String solvePart1(List<String> input) {
+        var score = input.stream().mapToInt(line -> {
             var opponent = line.charAt(0) - 'A';
             var me = line.charAt(2) - 'X';
             if (me == opponent) {
@@ -21,8 +23,8 @@ public class Day02 implements IDay {
     }
 
     @Override
-    public String solvePart2(String input) {
-        var score = input.lines().mapToInt(line -> {
+    public String solvePart2(List<String> input) {
+        var score = input.stream().mapToInt(line -> {
             var opponent = line.charAt(0) - 'A';
             var outcome = line.charAt(2) - 'X';
             return switch (outcome) {

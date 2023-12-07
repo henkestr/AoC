@@ -2,16 +2,16 @@ package main.Y2021;
 
 import main.IDay;
 
+import java.util.List;
+
 public class Day02 implements IDay {
 
     @Override
-    public String solvePart1(String input) {
-        var posList = input.lines().toList();
-
+    public String solvePart1(List<String> input) {
         int xPos = 0;
         int yPos = 0;
 
-        for (String posString: posList) {
+        for (String posString: input) {
             String[] pos = posString.split(" ");
             String command = pos[0];
             int value = Integer.parseInt(pos[1]);
@@ -32,14 +32,12 @@ public class Day02 implements IDay {
     }
 
     @Override
-    public String solvePart2(String input) {
-        var posList = input.lines().toList();
-
+    public String solvePart2(List<String> input) {
         int aim = 0;
         int horPos = 0;
         int depth = 0;
 
-        for (String posString: posList) {
+        for (String posString: input) {
             String[] pos = posString.split(" ");
             String command = pos[0];
             int value = Integer.parseInt(pos[1]);

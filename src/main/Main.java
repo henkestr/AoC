@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Main {
@@ -68,13 +69,13 @@ public class Main {
         }
     }
 
-    private static String getInput() {
+    private static List<String> getInput() {
         var dayString = String.valueOf(DAY);
         if (DAY < 10) {
             dayString = "0" + dayString;
         }
         // Specify the path to your file
-        String filePath = "src/resources/" + YEAR + "/D" + dayString + ".txt";
+        String filePath = "resources/" + YEAR + "/D" + dayString + ".txt";
 
         // Create a Path object
         Path path = Paths.get(filePath);
@@ -84,6 +85,6 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return lines;
+        return lines.lines().toList();
     }
 }

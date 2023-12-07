@@ -22,13 +22,12 @@ public class Day03 implements IDay {
     }
 
     @Override
-    public String solvePart1(String input) {
-        var lines = input.lines().toList();
+    public String solvePart1(List<String> input) {
         List<PartNumber> numbers = new ArrayList<>();
         List<Coordinates> symbols = new ArrayList<>();
 
-        for (int y = 0; y < lines.size(); y++) {
-            var line = lines.get(y);
+        for (int y = 0; y < input.size(); y++) {
+            var line = input.get(y);
             var numberBuilder = new StringBuilder();
 
             for (int x = 0; x < line.length(); x++) {
@@ -61,13 +60,12 @@ public class Day03 implements IDay {
     }
 
     @Override
-    public String solvePart2(String input) {
-        var lines = input.lines().toList();
+    public String solvePart2(List<String> input) {
         List<PartNumber> numbers = new ArrayList<>();
         List<Coordinates> gearSymbols = new ArrayList<>();
 
-        for (int y = 0; y < lines.size(); y++) {
-            var line = lines.get(y);
+        for (int y = 0; y < input.size(); y++) {
+            var line = input.get(y);
             var numberBuilder = new StringBuilder();
 
             for (int x = 0; x < line.length(); x++) {

@@ -2,13 +2,14 @@ package main.Y2022;
 
 import main.IDay;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class Day03 implements IDay {
 
     @Override
-    public String solvePart1(String input) {
-        var result = input.lines().mapToInt(compartment -> {
+    public String solvePart1(List<String> input) {
+        var result = input.stream().mapToInt(compartment -> {
             var chars = compartment.toCharArray();
 
             for (int i = 0; i < compartment.length() / 2; i++) {
@@ -24,8 +25,8 @@ public class Day03 implements IDay {
     }
 
     @Override
-    public String solvePart2(String input) {
-        var list = input.lines().toList();
+    public String solvePart2(List<String> input) {
+        var list = input.stream().toList();
         var partitionSize = 3;
 
         var partitionGroup = IntStream.range(0, (list.size() + partitionSize - 1) / partitionSize)

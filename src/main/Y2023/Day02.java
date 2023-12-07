@@ -3,6 +3,7 @@ package main.Y2023;
 import main.IDay;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,13 +14,13 @@ public class Day02 implements IDay {
     final static int MAX_VALUE_BLUE = 14;
 
     @Override
-    public String solvePart1(String input) {
+    public String solvePart1(List<String> input) {
         var result = 0;
         var gameId = 0;
         var map = new HashMap<String, Integer>();
         Pattern pattern = Pattern.compile("\\d+");
 
-        for (String line : input.lines().toList()) {
+        for (String line : input) {
             Matcher matcher = pattern.matcher(line);
 
             if (matcher.find()) {
@@ -69,11 +70,11 @@ public class Day02 implements IDay {
 
 
     @Override
-    public String solvePart2(String input) {
+    public String solvePart2(List<String> input) {
         var result = 0;
         var map = new HashMap<String, Integer>();
 
-        for (String line : input.lines().toList()) {
+        for (String line : input) {
             var game = line.replaceFirst("Game \\d+: ", "");
             var sets = game.split(";");
 

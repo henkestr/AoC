@@ -3,13 +3,15 @@ package main.Y2020;
 
 import main.IDay;
 
+import java.util.List;
+
 public class Day01 implements IDay {
 
     public static final int NUM_TO_FIND = 2020;
 
     @Override
-    public String solvePart1(String input) {
-        var lines = input.lines().map(Integer::parseInt).toList();
+    public String solvePart1(List<String> input) {
+        var lines = input.stream().map(Integer::parseInt).toList();
 
 
         for (int i = 0; i < lines.size(); i++) {
@@ -27,8 +29,8 @@ public class Day01 implements IDay {
     }
 
     @Override
-    public String solvePart2(String input) {
-        var lines = input.lines().map(Integer::parseInt).toList();
+    public String solvePart2(List<String> input) {
+        var lines =input.stream().map(Integer::parseInt).toList();
 
         for (int i = 0; i < lines.size(); i++) {
             for (int j = 0; j < lines.size(); j++) {

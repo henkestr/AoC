@@ -39,8 +39,8 @@ public class Day07 implements IDay {
 
 
     @Override
-    public String solvePart1(String input) {
-        List<CardHand> cardHands = input.lines().map(line -> {
+    public String solvePart1(List<String> input) {
+        List<CardHand> cardHands = input.stream().map(line -> {
                     String[] parts = line.split(" ");
                     return new CardHand(parts[0], Integer.parseInt(parts[1]));
                 })
@@ -135,8 +135,8 @@ public class Day07 implements IDay {
     }
 
     @Override
-    public String solvePart2(String input) {
-        List<CardHand> cardHands = input.lines().map(line -> {
+    public String solvePart2(List<String> input) {
+        List<CardHand> cardHands = input.stream().map(line -> {
                     String[] parts = line.split(" ");
                     return new CardHand(parts[0], Integer.parseInt(parts[1]));
                 })

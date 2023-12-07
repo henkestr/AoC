@@ -14,8 +14,7 @@ public class Day05 implements IDay {
     public static final int RANGE_LENGTH_INDEX = 2;
 
     @Override
-    public String solvePart1(String input) {
-        var lines = input.lines().toList();
+    public String solvePart1(List<String> input) {
 
         List<Long> seeds = new ArrayList<>();
         List<List<Long>> seedToSoil = new ArrayList<>();
@@ -35,11 +34,11 @@ public class Day05 implements IDay {
         int humidityToLocationStartLineIdx = 0;
 
         // Collect the seeds
-        Arrays.stream(lines.get(0).split("seeds: ")[1].split(" ")).forEach(v -> seeds.add(Long.parseLong(v)));
+        Arrays.stream(input.getFirst().split("seeds: ")[1].split(" ")).forEach(v -> seeds.add(Long.parseLong(v)));
 
         // Collect the lists for everything else
         var index = 0;
-        for (String line : lines) {
+        for (String line : input) {
             switch (line) {
                 case "seed-to-soil map:" -> seedToSoilMapStartLineIdx = index;
                 case "soil-to-fertilizer map:" -> soilToFertilizerMapStartLineIdx = index;
@@ -53,31 +52,31 @@ public class Day05 implements IDay {
         }
 
         for (int i = seedToSoilMapStartLineIdx + 1; i < soilToFertilizerMapStartLineIdx - 1; i++) {
-            seedToSoil.add(getValues(lines, i));
+            seedToSoil.add(getValues(input, i));
         }
 
         for (int i = soilToFertilizerMapStartLineIdx + 1; i < fertilizerToWaterMapStartLineIdx - 1; i++) {
-            soilToFertilizer.add(getValues(lines, i));
+            soilToFertilizer.add(getValues(input, i));
         }
 
         for (int i = fertilizerToWaterMapStartLineIdx + 1; i < waterToLightMapStartLineIdx - 1; i++) {
-            fertilizerToWater.add(getValues(lines, i));
+            fertilizerToWater.add(getValues(input, i));
         }
 
         for (int i = waterToLightMapStartLineIdx + 1; i < lightToTemperatureStartLineIdx - 1; i++) {
-            waterToLight.add(getValues(lines, i));
+            waterToLight.add(getValues(input, i));
         }
 
         for (int i = lightToTemperatureStartLineIdx + 1; i < temperatureToHumidityStartLineIdx - 1; i++) {
-            lightToTemperature.add(getValues(lines, i));
+            lightToTemperature.add(getValues(input, i));
         }
 
         for (int i = temperatureToHumidityStartLineIdx + 1; i < humidityToLocationStartLineIdx - 1; i++) {
-            temperatureToHumidity.add(getValues(lines, i));
+            temperatureToHumidity.add(getValues(input, i));
         }
 
-        for (int i = humidityToLocationStartLineIdx + 1; i < lines.size(); i++) {
-            humidityToLocation.add(getValues(lines, i));
+        for (int i = humidityToLocationStartLineIdx + 1; i < input.size(); i++) {
+            humidityToLocation.add(getValues(input, i));
         }
 
         List<Long> soils = new ArrayList<>();
@@ -101,7 +100,7 @@ public class Day05 implements IDay {
         List<Long> locations = new ArrayList<>();
         humidity.forEach(h -> locations.add(mapValues(h, humidityToLocation)));
 
-        long result = locations.get(0);
+        long result = locations.getFirst();
         for (int i = 1; i < locations.size(); i++) {
             if (locations.get(i) < result) {
                 result = locations.get(i);
@@ -112,11 +111,10 @@ public class Day05 implements IDay {
 
 
     @Override
-    public String solvePart2(String input) {
-        var lines = input.lines().toList();
+    public String solvePart2(List<String> input) {
 
         //add seeds
-        var seeds = ParseSeeds(lines.get(0));
+        var seeds = ParseSeeds(input.getFirst());
         var SeedToSoil = new HashSet<MappingRow>();
         var SoilToFertilizer = new HashSet<MappingRow>();
         var FertilizerToWater = new HashSet<MappingRow>();
@@ -126,7 +124,7 @@ public class Day05 implements IDay {
         var HumidityToLocation = new HashSet<MappingRow>();
         var currentMap = SeedToSoil;
 
-        for (String row : lines) {
+        for (String row : input) {
             if (row.isEmpty() || row.startsWith("seeds")) {
                 continue;
             }
@@ -153,7 +151,7 @@ public class Day05 implements IDay {
                     break;
                 default:
                     var rowInts = Arrays.stream(row.split(" ")).map(Long::parseLong).toList();
-                    currentMap.add(new MappingRow(rowInts.get(SRC_RANGE_START_INDEX), rowInts.get(DST_RANGE_START_INDEX), rowInts.get(RANGE_LENGTH_INDEX)));
+                    currentMap.add(new MappingRow(rowInts.get(SRC_RANGE_START_INDEX), rowInts.getFirst(), rowInts.get(RANGE_LENGTH_INDEX)));
             }
         }
         var resList = new HashSet<Long>();
@@ -181,7 +179,7 @@ public class Day05 implements IDay {
         for (var list : lists) {
             if (list.get(SRC_RANGE_START_INDEX) <= source && list.get(SRC_RANGE_START_INDEX) + list.get(RANGE_LENGTH_INDEX) > source) {
                 long diff = source - list.get(SRC_RANGE_START_INDEX);
-                return list.get(DST_RANGE_START_INDEX) + diff;
+                return list.getFirst() + diff;
             }
         }
         return source;

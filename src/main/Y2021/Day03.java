@@ -9,8 +9,8 @@ import java.util.List;
 public class Day03 implements IDay {
 
     @Override
-    public String solvePart1(String input) {
-        var list = input.lines().toArray(String[]::new);
+    public String solvePart1(List<String> input) {
+        var list = input.toArray(String[]::new);
         StringBuilder gamma = new StringBuilder();
         StringBuilder epsilon = new StringBuilder();
 
@@ -40,10 +40,8 @@ public class Day03 implements IDay {
     }
 
     @Override
-    public String solvePart2(String input) {
-        var list = input.lines().toArray(String[]::new);
-        StringBuilder oxygen = new StringBuilder();
-        StringBuilder scrubber = new StringBuilder();
+    public String solvePart2(List<String> input) {
+        var list = input.toArray(String[]::new);
         List<String> nextList = Arrays.stream(list).toList();
 
         var index = 0;

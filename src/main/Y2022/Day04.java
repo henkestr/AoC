@@ -2,13 +2,15 @@ package main.Y2022;
 
 import main.IDay;
 
+import java.util.List;
+
 public class Day04 implements IDay {
 
     @Override
-    public String solvePart1(String input) {
+    public String solvePart1(List<String> input) {
         int result = 0;
 
-        for (String line : input.lines().toList()) {
+        for (String line : input) {
             String[] parts = line.split(",");
 
             String[] group1 = parts[0].split("-");
@@ -30,10 +32,10 @@ public class Day04 implements IDay {
     }
 
     @Override
-    public String solvePart2(String input) {
+    public String solvePart2(List<String> input) {
         int result = 0;
 
-        for (String line : input.lines().toList()) {
+        for (String line : input) {
             String[] parts = line.split(",");
 
             String[] group1 = parts[0].split("-");
