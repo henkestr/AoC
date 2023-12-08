@@ -1,11 +1,9 @@
 package main.Y2023;
 
 import main.IDay;
+import main.Util.MathUtil;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Day08 implements IDay {
 
@@ -58,26 +56,31 @@ public class Day08 implements IDay {
             Node n = new Node(nodeName, s[1].trim().substring(1, 4), s[1].trim().substring(6, 9));
             nodeMap.put(nodeName, n);
         }
-        
-        var nodes = nodeMap.keySet().stream().filter(key -> key.endsWith("A")).toList();
-        long jumps = 0;
 
-        while (true) {
-            for (char instruction : instructions.toCharArray()) {
-                List<String> nextNodes = new ArrayList<>();
-                for (var node : nodes) {
+        var nodes = nodeMap.entrySet().stream().filter(entry -> entry.getKey().endsWith("A")).map(Map.Entry::getValue).toList();
+        var loopSizes = new ArrayList<Long>();
+
+        for (Node current : nodes) {
+            var steps = 0L;
+            var found = false;
+            while (!found) {
+                for (char instruction : instructions.toCharArray()) {
+                    steps++;
                     if (instruction == 'L') {
-                        nextNodes.add(nodeMap.get(node).left);
-                    } else {
-                        nextNodes.add(nodeMap.get(node).right);
+                        current = nodeMap.get(current.left);
+                    }
+                    if (instruction == 'R') {
+                        current = nodeMap.get(current.right);
+                    }
+                    if (current.name.endsWith("Z")) {
+                        found = true;
+                        break;
                     }
                 }
-                jumps++;
-                if (nextNodes.stream().allMatch(o -> o.endsWith("Z"))) {
-                    return String.valueOf(jumps);
-                }
-                nodes = new ArrayList<>(nextNodes);
             }
+            loopSizes.add(steps);
         }
+
+        return String.valueOf(MathUtil.lcm(loopSizes));
     }
 }
