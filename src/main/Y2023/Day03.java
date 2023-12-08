@@ -3,7 +3,9 @@ package main.Y2023;
 import main.IDay;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public class Day03 implements IDay {
 
@@ -89,7 +91,10 @@ public class Day03 implements IDay {
                 numbers.add(createNumber(numberBuilder.toString(), line.length(), y));
             }
         }
-        return null;
+        return String.valueOf(gearSymbols.stream()
+                .flatMap(gearSymbol -> createGear(gearSymbol, numbers).stream())
+                .mapToInt(Gear::ratio)
+                .sum());
     }
 
     private PartNumber createNumber(String number, int xAfter, int y) {
@@ -98,5 +103,23 @@ public class Day03 implements IDay {
                 Integer.parseInt(number),
                 new Coordinates(xBefore, y - 1),
                 new Coordinates(xAfter, y + 1));
+    }
+
+
+    Optional<Gear> createGear(Coordinates gearSymbol, Collection<PartNumber> partNumbers) {
+        var parts = partNumbers.stream()
+                .filter(part -> part.touches(gearSymbol))
+                .toList();
+        return parts.size() == 2
+                ? Optional.of(new Gear(parts.get(0), parts.get(1)))
+                : Optional.empty();
+    }
+
+    record Gear(PartNumber part1, PartNumber part2) {
+
+        int ratio() {
+            return part1.number() * part2.number();
+        }
+
     }
 }
