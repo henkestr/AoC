@@ -12,7 +12,12 @@ public class Main {
 
     private static final int YEAR = 2023;
 
-    private static final int DAY = 8;
+    private static final int DAY = 9;
+    private static final Map<Integer, IDay> DAYS2015;
+    private static final Map<Integer, IDay> DAYS2016;
+    private static final Map<Integer, IDay> DAYS2017;
+    private static final Map<Integer, IDay> DAYS2018;
+    private static final Map<Integer, IDay> DAYS2019;
     private static final Map<Integer, IDay> DAYS2020;
     private static final Map<Integer, IDay> DAYS2021;
 
@@ -20,6 +25,18 @@ public class Main {
     private static final Map<Integer, IDay> DAYS2023;
 
     static {
+        DAYS2015 = new HashMap<>();
+        DAYS2015.put(1, new main.Y2015.Day01());
+        DAYS2015.put(2, new main.Y2015.Day02());
+
+        DAYS2016 = new HashMap<>();
+
+        DAYS2017 = new HashMap<>();
+
+        DAYS2018 = new HashMap<>();
+
+        DAYS2019 = new HashMap<>();
+
         DAYS2020 = new HashMap<>();
         DAYS2020.put(1, new main.Y2020.Day01());
 
@@ -44,12 +61,23 @@ public class Main {
         DAYS2023.put(6, new main.Y2023.Day06());
         DAYS2023.put(7, new main.Y2023.Day07());
         DAYS2023.put(8, new main.Y2023.Day08());
+        DAYS2023.put(9, new main.Y2023.Day09());
     }
 
 
     public static void main(String[] args) {
         IDay day;
-        if (YEAR == 2020) {
+        if (YEAR == 2015) {
+            day = DAYS2015.get(DAY);
+        } else if (YEAR == 2016) {
+            day = DAYS2016.get(DAY);
+        } else if (YEAR == 2017) {
+            day = DAYS2017.get(DAY);
+        } else if (YEAR == 2018) {
+            day = DAYS2018.get(DAY);
+        } else if (YEAR == 2019) {
+            day = DAYS2019.get(DAY);
+        } else if (YEAR == 2020) {
             day = DAYS2020.get(DAY);
         } else if (YEAR == 2021) {
             day = DAYS2021.get(DAY);
