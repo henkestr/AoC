@@ -10,8 +10,8 @@ import java.util.Map;
 
 public class Main {
 
-    private static final int YEAR = 2023;
-    private static final int DAY = 9;
+    private static final int YEAR = 2024;
+    private static final int DAY = 1;
     private static final Map<Integer, IDay> DAYS2015;
     private static final Map<Integer, IDay> DAYS2016;
     private static final Map<Integer, IDay> DAYS2017;
@@ -19,9 +19,9 @@ public class Main {
     private static final Map<Integer, IDay> DAYS2019;
     private static final Map<Integer, IDay> DAYS2020;
     private static final Map<Integer, IDay> DAYS2021;
-
     private static final Map<Integer, IDay> DAYS2022;
     private static final Map<Integer, IDay> DAYS2023;
+    private static final Map<Integer, IDay> DAYS2024;
 
 
     public static void main(String[] args) {
@@ -44,6 +44,8 @@ public class Main {
             day = DAYS2022.get(DAY);
         } else if (YEAR == 2023) {
             day = DAYS2023.get(DAY);
+        } else if (YEAR == 2024) {
+            day = DAYS2024.get(DAY);
         } else {
             throw new IllegalArgumentException("Year does not exist");
         }
@@ -130,5 +132,8 @@ public class Main {
         DAYS2023.put(23, new main.Y2023.Day23());
         DAYS2023.put(24, new main.Y2023.Day24());
         DAYS2023.put(25, new main.Y2023.Day25());
+
+        DAYS2024 = new HashMap<>();
+        DAYS2024.put(1, new main.Y2024.Day01());
     }
 }
